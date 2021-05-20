@@ -97,7 +97,9 @@ exports.withApplicationInsights = function (config) {
                 };
                 WithApplicationInsights.prototype.trackPageView = function () {
                     if (appInsights) {
-                        var name_1 = location.pathname || this.props.Component.displayName || this.props.Component.name;
+                        var name_1 = location.pathname.replace(/(?=.{34})[a-zA-Z0-9]+(-[a-zA-Z0-9]+){4}\//, '')
+                            || this.props.Component.displayName
+                            || this.props.Component.name;
                         var properties = {
                             route: this.props.router.route
                         };
