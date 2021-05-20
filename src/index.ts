@@ -55,7 +55,9 @@ export const withApplicationInsights = (config: IConfiguration & IConfig & ICust
 
       public trackPageView() {
         if (appInsights) {
-          const name = location.pathname || this.props.Component.displayName || this.props.Component.name;
+          const name = location.pathname.replace(/(?=.{34})[a-zA-Z0-9]+(-[a-zA-Z0-9]+){4}\//, '')
+              || this.props.Component.displayName
+              || this.props.Component.name;
           const properties = {
             route: this.props.router.route,
           }
